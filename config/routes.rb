@@ -1,28 +1,24 @@
 Rails.application.routes.draw do
   
-  #TOPのみURLにcustomer非表示
-  scope module: :customer do
-    root 'homes#top'
-    get 'about' => 'homes#about', as: 'about'
-  end
+  root 'homes#top'
+  get 'about' => 'homes#about', as: 'about'
+
 
   #会員側のルーティング設定
-  namespace :customer do
-    resources :addresses, except: [:show, :new]
+  resources :addresses, except: [:show, :new]
 
-    resources :orders, except: [:edit, :update, :destroy]
-    get 'orders/confirm' => 'orders#confirm', as: 'confirm'
-    get 'orders/complete' => 'orders#complete', as: 'complete'
+  resources :orders, except: [:edit, :update, :destroy]
+  get 'orders/confirm' => 'orders#confirm', as: 'confirm'
+  get 'orders/complete' => 'orders#complete', as: 'complete'
 
-    resources :cart_items, except: [:show, :new, :edit]
-    delete '/:id' => 'cart_items#all_destroy'
+  resources :cart_items, except: [:show, :new, :edit]
+  delete '/:id' => 'cart_items#all_destroy'
 
-    resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show]
 
-    resources :customers, only: [:show, :edit, :update]
-    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-    patch '/' => 'customers#out'
-  end
+  resources :customers, only: [:show, :edit, :update]
+  get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+  patch '/' => 'customers#out'
 
   # 管理者側のルーティング設定
   namespace :admin do
