@@ -1,68 +1,35 @@
 Rails.application.routes.draw do
-  namespace :customer do
-    get 'addresses/index'
-    get 'addresses/create'
-    get 'addresses/edit'
-    get 'addresses/update'
-    get 'addresses/destroy'
+  
+  #TOPのみURLにcustomer非表示
+  scope module: :customer do
+    root 'homes#top'
+    get 'about' => 'homes#about', as: 'about'
   end
+
+  #会員側のルーティング設定
   namespace :customer do
-    get 'orders/index'
-    get 'orders/show'
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/create'
-    get 'orders/complete'
+    resources :addresses, except: [:show, :new]
+
+    resources :orders, except: [:edit, :update, :destroy]
+    get 'orders/confirm' => 'orders#confirm', as: 'confirm'
+    get 'orders/complete' => 'orders#complete', as: 'complete'
+
+    resources :cart_items, except: [:show, :new, :edit]
+    delete '/:id' => 'cart_items#all_destroy'
+
+    resources :items, only: [:index, :show]
+
+    resources :customers, only: [:show, :edit, :update]
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch '/' => 'customers#out'
   end
-  namespace :customer do
-    get 'cart_items/index'
-    get 'cart_items/create'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/all_destroy'
-  end
-  namespace :customer do
-    get 'items/index'
-    get 'items/show'
-  end
-  namespace :customer do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/unsubscribe'
-    get 'customers/out'
-  end
-  namespace :customer do
-    get 'homes/top'
-    get 'homes/about'
-  end
+
+  # 管理者側のルーティング設定
   namespace :admin do
-    get 'order_details/update'
+    resources :order_details, only: :update
+    resources :orders, only: [:index, :show, :update]
+    resources :categories, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :items, except: :destroy
   end
-  namespace :admin do
-    get 'orders/index'
-    get 'orders/show'
-    get 'orders/update'
-  end
-  namespace :admin do
-    get 'categories/index'
-    get 'categories/create'
-    get 'categories/edit'
-    get 'categories/update'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/create'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
-  end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
