@@ -7,8 +7,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      @categories = Category.all
-      render :index, notice: '新規登録が完了しました。'
+      redirect_to admin_categories_path
     else
       @categories = Category.all
       render :index
@@ -16,9 +15,13 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def edit
+    @category =Category.find(params[:id])
   end
 
   def update
+    @category =Category.find(params[:id])
+    @category.update(category_params)
+    redirect_to admin_categories_path
   end
 
   private
