@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :customers
   root 'homes#top'
   get 'about' => 'homes#about', as: 'about'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
   get 'orders/complete' => 'orders#complete', as: 'complete'
   resources :orders, except: [:edit, :update, :destroy]
-  
+
 
   resources :cart_items, except: [:show, :new, :edit]
   delete '/:id' => 'cart_items#all_destroy'
@@ -24,9 +24,9 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    
+
     devise_for :admins
-    
+
     resources :order_details, only: :update
     resources :orders, only: [:index, :show, :update]
     resources :categories, only: [:index, :create, :edit, :update]
