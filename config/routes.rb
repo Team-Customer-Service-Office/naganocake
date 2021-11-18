@@ -22,9 +22,6 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    
-    devise_for :admins
-    
     resources :order_details, only: :update
     resources :orders, only: [:index, :show, :update]
     resources :categories, only: [:index, :create, :edit, :update]
