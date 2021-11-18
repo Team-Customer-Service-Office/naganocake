@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   #会員側のルーティング設定
   resources :addresses, except: [:show, :new]
 
-  resources :orders, except: [:edit, :update, :destroy]
   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
   get 'orders/complete' => 'orders#complete', as: 'complete'
+  resources :orders, except: [:edit, :update, :destroy]
+  
 
   resources :cart_items, except: [:show, :new, :edit]
   delete '/:id' => 'cart_items#all_destroy'
