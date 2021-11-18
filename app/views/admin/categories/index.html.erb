@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-8">
-      <h2>ジャンル一覧・追加</h2>
-      <div>
-        <%= form_with model: [:admin, @category], local:true do |f| %>
-          ジャンル名
-          <%= f.text_field :name, placeholder: 'ジャンル名'  %>
-          <%= f.submit '新規登録' %>
-        <% end %>
-      </div>
-      <table>
+    <div class="col-md-8">
+      <h2 class="my-5">ジャンル一覧・追加</h2>
+      <%= form_with model: [:admin, @category], local:true, class: 'form-group row' do |f| %>
+        <div class="col-auto">
+          <label class="col-form-label">ジャンル名</label>
+        </div>
+        <div class="col-auto">
+          <%= f.text_field :name, placeholder: 'ジャンル名', class: 'form-control'  %>
+        </div>
+        <div class="col-auto">
+          <%= f.submit '新規登録', class: 'btn btn-success mb-3' %>
+        </div>
+      <% end %>
+      <table class="table">
         <thead>
           <tr>
             <th>ジャンル</th>
@@ -17,10 +21,10 @@
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do %>
+          <% @categories.each do |category| %>
             <tr>
-              <td><%= @category.name %></td>
-              <td><%= link_to '編集する', edit_admin_category_path(@category.id), class: 'btn btn-sm btn-success' %></td>
+              <td><%= category.name %></td>
+              <td><%= link_to '編集する', edit_admin_category_path(category.id), class: 'btn btn-sm btn-success' %></td>
             </tr>
           <% end %>
         </tbody>
