@@ -4,44 +4,45 @@
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <meta name="viewport" content="width=devise-width, initial-scale=1, maximum-scale=1" >
+    <script src="https://kit.fontawesome.com/a9e277fd5e.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
 
   <body>
-     
+
     <nav class="navbar p-5 navbar-expand-lg navbar-dark" style="background-color:pink;">
-      
+
       <div class="container">
         <%= link_to root_path, class:"navbar-brand" do %>
         <span>ながのcake</span>
         <% end %>
-        
+
         <div class="row .justify-content-end ">
           <!--if customer_signed_in? カスタマーじっそうされたら追加する-->
           <%= link_to "About", about_path, class:"nav-link text-light" %>
-          
+
           <!--各種機能ページ実装されたらパスを変更する-->
-          
+
           <%= link_to "商品一覧", root_path, class:"nav-link text-light" %>
           <%= link_to "新規登録", root_path, class:"nav-link text-light" %>
           <%= link_to "ログイン", root_path, class:"nav-link text-light" %>
-        
+
        </div>
-        
+
       </div>
     </nav>
-    
-    
-    
-    
-    
+
+
+
+
+
     <%= yield %>
-    
+
     <footer>
       <div class="container mt-5">
         <div class="row">
@@ -52,6 +53,6 @@
       </div>
     </footer>
   </body>
-  
-  
+
+
 </html>
