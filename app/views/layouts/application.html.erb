@@ -24,12 +24,21 @@
         <!--if customer_signed_in? カスタマーじっそうされたら追加する-->
         <%= link_to "About", about_path %>
         
-        <!--各種機能ページ実装されたらパスを変更する-->
-        
-        <%= link_to "商品一覧", root_path %>
-        <%= link_to "新規登録", root_path %>
-        <%= link_to "ログイン", root_path %>
-        
+        <ul class="nav pull-right nav-pills">
+        <% if admin_signed_in? %>
+          <li><%= link_to "商品一覧", root_path %></li>
+          <li><%= link_to "会員一覧", root_path %></li>
+          <li><%= link_to "注文履歴一覧", root_path %></li>
+          <li><%= link_to "ジャンル一覧", root_path %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <% else %>
+          <!--各種機能ページ実装されたらパスを変更する-->
+          <li><%= link_to "About", about_path %></li>
+          <li><%= link_to "商品一覧", root_path %></li>
+          <li><%= link_to "新規登録", root_path %></li>
+          <li><%= link_to "ログイン", root_path %></li>
+        <% end %>
+        </ul>
        
         
       </div>

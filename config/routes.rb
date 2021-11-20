@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   
   root 'homes#top'
+  
+  # 管理者側のdeviseルーティング設定
+  devise_for :admins, controllers: {
+    sessions: "admin/sessions"
+  }
+  
   get 'about' => 'homes#about', as: 'about'
 
 
@@ -22,8 +28,6 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    
-    devise_for :admins
     
     resources :order_details, only: :update
     resources :orders, only: [:index, :show, :update]
