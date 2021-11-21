@@ -14,6 +14,8 @@ class Order < ApplicationRecord
     enum order_status: { wait:0, confirm:1, production:2, preparation:3, shipped:4 }
       
   
-    
+    def postcode_address
+        '〒' + postcode + ' ' + address
+    end
     
 end

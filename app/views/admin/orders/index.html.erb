@@ -1,2 +1,41 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<!--管理者TOP-->
+<main>
+    <div class="container">
+        
+        <div class="my-4">
+        <span style="background-color:pink;">注文履歴一覧</span>
+        </div>
+        
+        
+        <table class="table">
+            
+            <thead class="thead-lignt">
+                <th>購入日時</th>
+                <th>購入者</th>
+                <th>注文個数</th>
+                <th>注文ステータス</th>
+            </thead>
+            
+            <tbody>
+                <!--each do で注文履歴一覧を表示させる-->
+                <td>
+                    <!--Order-details.created_at day-->
+                </td>
+                <td>
+                    <!--Order_details.postcode-->
+                    <!--Order_details.address-->
+                    <!--Order_details.full_name-->
+                </td>
+                <td>
+                    <!--Order_details.quantity-->
+                </td>
+                <td>
+                    <!--Order_details.price-->
+                </td>
+            </tbody>
+        </table>
+        
+        <%= paginate @orders %>
+    
+    </div>
+</main>
