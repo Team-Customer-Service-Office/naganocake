@@ -1,5 +1,46 @@
 <main>
+  <div class="container">
     <div class="row">
-         <%= render "homes/category" %>
+      <%= render "homes/category", categories: @categories %>
+      <div class="col-md-9 my-5 ml-5">
+        <p>
+          ようこそ、ながのCAKEへ！</br>
+          このサイトは、ケーキ販売のECサイトになります。</br>
+          会員でない方も商品の閲覧はできますが、</br>
+          購入には会員登録が必要になります。
+        </p>
+        <h2>新着商品</h2>
+        <div class="d-flex justify-content-between flex-wrap">
+          <div>
+            <%= image_tag 'test.png', size: "180x120" %>
+            <ul class="list-group">
+              <li>商品名商品名商品名</li>
+              <li>¥9,999</li>
+            </ul>
+          </div>
+          <div>
+            <%= image_tag 'test.png', size: "180x120" %>
+            <ul class="list-group">
+              <li>商品名商品名商品名</li>
+              <li>¥9,999</li>
+            </ul>
+          </div>
+          <div>
+            <%= image_tag 'test.png', size: "180x120" %>
+            <ul class="list-group">
+              <li>商品名商品名商品名</li>
+              <li>¥9,999</li>
+            </ul>
+          </div>
+          <div>
+            <%= image_tag 'test.png', size: "180x120" %>
+            <ul class="list-group">
+              <li>商品名商品名商品名</li>
+              <li>¥9,999</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </main>
