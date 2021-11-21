@@ -7,7 +7,7 @@
   <div class="row">
     <div class="mx-auto">
       <%= form_with model: [:admin, @item], local:true do |f| %>
-        <table class="table table-borderless">
+        <table class="table table-borderless mb-5">
           <tbody>
             <tr>
               <th>商品画像</th>
@@ -27,8 +27,12 @@
             </tr>
             <tr>
               <th>税抜価格</th>
-              <td><%= f.text_field :price_without_tax, placeholder: '1000', class: 'form-control' %></td>
-              <td>円</td>
+              <td class="input-group">
+                <%= f.text_field :price_without_tax, placeholder: '1000', class: 'form-control' %>
+                <div class="d-flex input-group-append">
+                  <span class="input-group-text">円</span>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>販売ステータス</th>
@@ -41,8 +45,9 @@
             </tr>
           </tbody>
         </table>
-        <div class="col text-center mt-5">
-          <%= f.submit '新規登録', class: 'btn btn-success mb-3' %>
+        <div class="col text-center mb-5">
+          <%= link_to '一覧へ戻る', admin_items_path, class: 'btn btn-secondary mx-3' %>
+          <%= f.submit '新規登録', class: 'btn btn-success mx-3' %>
         </div>
       <% end %>
     </div>
