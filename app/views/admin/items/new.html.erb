@@ -3,9 +3,11 @@
     <div class="col-md-8">
       <h2 class="my-5 ml-5 pl-5">商品新規登録</h2>
     </div>
+  </div>
+  <div class="row">
     <div class="mx-auto">
       <%= form_with model: [:admin, @item], local:true do |f| %>
-        <table>
+        <table class="table table-borderless">
           <tbody>
             <tr>
               <th>商品画像</th>
@@ -31,9 +33,9 @@
             <tr>
               <th>販売ステータス</th>
               <td>
-                <%= f.radio_button :is_active, Item.is_actives.key(1) %>
+                <%= f.radio_button :is_active, :sale %>
                 <%= f.label :is_active, Item.is_actives_i18n[:sale] %>
-                <%= f.radio_button :is_active, Item.is_actives.key(0) %>
+                <%= f.radio_button :is_active, :stop %>
                 <%= f.label :is_active, Item.is_actives_i18n[:stop] %>
               </td>
             </tr>
