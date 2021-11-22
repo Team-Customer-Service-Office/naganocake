@@ -15,14 +15,21 @@
  */
 @import "bootstrap";
 
-.mv {
-  background:url(mv.jpg) center no-repeat; background-size: cover;
-}
-
 main {
   background-color: #fffaf0;
 }
 
 footer {
   background-color: #F0D3D7;
+}
+
+.mv {
+  background:url(mv.jpg) center no-repeat; background-size: cover;
+}
+
+.mv-top {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-image: url(mv-top.jpg);
 }
