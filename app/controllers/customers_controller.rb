@@ -11,12 +11,25 @@ class Customer::CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+       redirect_to customer_path(@customer)
+    else
+       render 'edit'
+    end
   end
 
   def unsubscribe
+    @customer = Customer.find(params[:id])
   end
 
   def out
+    @customer = Customer.find(params[:id])
+    if @customer.update(is_deleted: false)
+       #URLを踏ませずにコントローラーから直接サインアウトの指示を出す
+       sign_out current_custome
+    end
+       redirect_to root_path
   end
 
   privete
