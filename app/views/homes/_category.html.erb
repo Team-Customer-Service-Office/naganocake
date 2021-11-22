@@ -1,13 +1,10 @@
-<div class="col-md-3">
-    
-    <div class="border">
-        <h3 class="border-bottom">ジャンル検索</h3>
-        <div class="px-3">
-            <p>ケーキ</p>
-            <p>焼き菓子</p>
-            <p>プリン</p>
-            <p>キャンディ</p>
-        </div>
-    </div>
-    
+<div class="col-md-2 my-5">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-dark text-center">ジャンル検索</li>
+    <% categories.each do |category| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= category.name %><span class="badge badge-primary rounded-pill">999</span>
+      </li>
+    <% end %>
+  </ul>
 </div>

@@ -2,10 +2,14 @@
   <div class="row">
     <div class="col-md-8">
       <h2 class="my-5 ml-5 pl-5">商品一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto col-md-8">
       <%= link_to new_admin_item_path do %>
-        <i class="fas fa-folder-plus fa-2x"></i>
+        <i class="fas fa-folder-plus fa-2x" style="color:#ED52A1"></i>
       <% end %>
-      <table class="table">
+      <table class="table mb-5">
         <thead>
           <tr>
             <th>商品ID</th>
@@ -21,8 +25,14 @@
               <td><%= item.id %></td>
               <td><%= link_to item.name, admin_item_path(item.id) %></td>
               <td><%= item.price_without_tax %></td>
-              <td><%= item.category_id %></td>
-              <td><%= item.is_active? ? '販売中':'販売停止中' %></td>
+              <td><%= item.category.name %></td>
+              <td>
+                <% if item.is_active == "sale" %>
+                  <p class="font-weight-bold text-success">販売中</p>
+                <% else %>
+                  <p class="font-weight-bold text-secondary">販売停止中</p>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
