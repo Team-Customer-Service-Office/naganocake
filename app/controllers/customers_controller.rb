@@ -1,12 +1,13 @@
 class Customer::CustomersController < ApplicationController
-  # before_action :authenticate_customer!
-  # before_action :ensure_correct_customer, {only: [:show, :edit]}
+  before_action :authenticate_customer!
+  before_action :ensure_correct_customer, {only: [:show, :edit]}
 
   def show
     @customer = Customer.find(params[:id])
   end
 
   def edit
+    @customer = Customer.find(params[:id])
   end
 
   def update
