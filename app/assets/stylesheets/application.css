@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+.mv {
+  background:url(mv.jpg) center no-repeat; background-size: cover;
+}
+
+main {
+  background-color: #fffaf0;
+}
+
+footer {
+  background-color: #F0D3D7;
+}

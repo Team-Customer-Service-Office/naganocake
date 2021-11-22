@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
-  
+
+  devise_for :customers
   root 'homes#top'
+
+  # 管理者側のdeviseルーティング設定
+  devise_for :admins, controllers: {
+    sessions: "admin/sessions"
+  }
+
   get 'about' => 'homes#about', as: 'about'
 
 
   #会員側のルーティング設定
   resources :addresses, except: [:show, :new]
 
-  resources :orders, except: [:edit, :update, :destroy]
+  # resources の下にいると？うまく遷移しなかったので上にあげてみました。
   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
   get 'orders/complete' => 'orders#complete', as: 'complete'
+  resources :orders, except: [:edit, :update, :destroy]
+
 
   resources :cart_items, except: [:show, :new, :edit]
   delete '/:id' => 'cart_items#all_destroy'
@@ -22,6 +31,8 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
+
+
     resources :order_details, only: :update
     resources :orders, only: [:index, :show, :update]
     resources :categories, only: [:index, :create, :edit, :update]

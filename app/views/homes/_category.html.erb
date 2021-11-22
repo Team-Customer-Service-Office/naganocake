@@ -1,0 +1,10 @@
+<div class="col-md-2 my-5">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-dark text-center">ジャンル検索</li>
+    <% categories.each do |category| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= category.name %><span class="badge badge-primary rounded-pill">999</span>
+      </li>
+    <% end %>
+  </ul>
+</div>

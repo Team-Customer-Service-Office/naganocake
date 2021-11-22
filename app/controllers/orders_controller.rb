@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
+  
   def index
   end
 
   def show
+    
   end
 
   def new
+    @order = Order.new
   end
 
   def confirm
@@ -16,4 +19,6 @@ class OrdersController < ApplicationController
 
   def complete
   end
+  
+  
 end
