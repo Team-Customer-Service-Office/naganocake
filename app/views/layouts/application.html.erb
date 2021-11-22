@@ -22,11 +22,15 @@
         <span>ながのcake</span>
         <% end %>
         
-        <!--if customer_signed_in? カスタマーじっそうされたら追加する-->
-        <%= link_to "About", about_path %>
-        
         <ul class="nav pull-right nav-pills">
-        <% if admin_signed_in? %>
+        <% if customer_signed_in? %>
+          <!--各種機能ページ実装されたらパスを変更する-->
+          <li><%= link_to "マイページ", root_path %></li>
+          <li><%= link_to "商品一覧", root_path %></li>
+          <li><%= link_to "カート", root_path %></li>
+          <li><%= link_to "ログアウト", root_path %></li>
+        <% elsif admin_signed_in? %>
+          <!--各種機能ページ実装されたらパスを変更する-->
           <li><%= link_to "商品一覧", root_path %></li>
           <li><%= link_to "会員一覧", root_path %></li>
           <li><%= link_to "注文履歴一覧", root_path %></li>

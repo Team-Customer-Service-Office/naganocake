@@ -10,7 +10,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :phone_number
       t.string :password
-      t.boolean :is_deleted
+      t.boolean :is_deleted, default: false
 
       t.timestamps
     end
