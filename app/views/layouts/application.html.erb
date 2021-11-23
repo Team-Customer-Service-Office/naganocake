@@ -16,17 +16,17 @@
   <body>
     <div class="mv">
     <nav class="navbar navbar-expand-lg">
-    
+
       <div class="container">
-       
+
          <div class="col-4">
             <%= link_to root_path class:"navbar_brand" do %>
             <%= image_tag 'log_back_clear.png' %>
             <% end %>
          </div>
-        
+
         <!--if customer_signed_in? カスタマーじっそうされたら追加する-->
-        
+
           <div class="navbar_nav ml-auto">
               <ul class="nav pull-right nav-pills">
                 <% if admin_signed_in? %>
@@ -40,10 +40,10 @@
                   <li><%= link_to "商品一覧", items_path, class:"nav-link text-dark" %></li>
                   <li><%= link_to "カート", cart_items_path, class:"nav-link text-dark" %></li>
                   <li><%= link_to "ログアウト", destroy_customer_session_path, class:"nav-link text-dark" %></li>
-                  
+
                   <!--ここにいれる-->
                   ようこそ●●さん
-                  
+
                 <% else %>
                   <!--各種機能ページ実装されたらパスを変更する-->
                   <li><%= link_to "About", about_path, class:"nav-link text-dark" %></li>
@@ -55,7 +55,7 @@
           </div>
     </nav>
     </div>
-    
+
     <%= yield %>
 
     <footer>
@@ -63,7 +63,7 @@
         <div class="container">
           <div class="row">
             <div class="mx-auto">
-              <p>ピンクのほうがかわいいかも</p>
+              <p>©2021 TeamCustomerServiceOffice︎</p>
             </div>
           </div>
         </div>
