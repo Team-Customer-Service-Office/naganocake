@@ -71,6 +71,7 @@ gem 'devise'
 #bootstrap追加
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.13'
 
 #kaminari追加
 gem 'kaminari','~> 1.2.1'
