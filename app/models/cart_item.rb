@@ -1,6 +1,6 @@
 class CartItem < ApplicationRecord
     
-    has_many :items, dependetn: :deestroy
+    has_many :item, dependent: :destroy
     
     
 end

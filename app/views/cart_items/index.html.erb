@@ -4,10 +4,7 @@
         <div class="row">
             <h2 class="mt-5 col-9">ショッピングカート</h2>
             
-            <div class="mt-5 col-3 btn btn-danger">
-                カートをからにするここにいれる
-            </div>
-          </div>
+             <%= link_to "カートを空にする", CartItem.destroy_all, class:"mt-5 col-3 btn btn-danger" %>
           
           <table class="col-12 table-bordered">
               <thead>
@@ -21,11 +18,13 @@
               </thead>
               
               <tbody>
+                  <% @item.each do |cart_item| %>
+                  <td><%= cart_item.item.name %></td>
+                  <td><%= cart_item.item.price_without_tax %></td>
+                  <td><%= cart_item.amount %></td>
+                  <td><%= cart_item.subtotal %></td>
                   <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <% end %>
               </tbody>
               
           </table>

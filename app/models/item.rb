@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
   
   belongs_to :category
+  belongs_to :cart_item
+  
   enum is_active: { stop: false, sale: true }
   
   attachment :image
