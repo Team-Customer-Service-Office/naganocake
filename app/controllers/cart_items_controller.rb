@@ -1,18 +1,18 @@
 class CartItemsController < ApplicationController
   def index
-    
+    @item = CartItem.find(cart_item_params[:item_id])
     
     
   end
 
   def create
+    @item = CartItem.find(cart_item_params[:item_id])
     if CartItem.find_by(item.id)
       CartItem.amount.to_i + Item.amount.to_i
     else
     CartItem.new
     end
-    @item = CartItem.find(cart_item_params[:item_id])
-    end
+  end
   
 
 
