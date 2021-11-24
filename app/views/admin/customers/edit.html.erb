@@ -1,60 +1,71 @@
-<div class="row">
-  
-  <h2>会員情報編集</h2>
-  
-  <%= form_with model:@customer, local:true do |f| %>
-  
-    <table class="row table">
+<main>
+  <div class="container">
 
-      <tr>
-        <th><%= f.label :会員ID %></th>
-        <td><%= @customer.id %></td>
-　  　</tr>
-
-　  　<tr>
-　　    <th><%= f.label :氏名 %></th>
-　　    <td><%= f.text_field :first_name, class:"form-control" %>
-            <%= f.text_field :last_name, class:"form-control" %>
-　　    </td>
-　　  </tr>
-
-　  　<tr>
-　　    <th><%= f.label :フリガナ %></th>
-　　    <td><%= f.text_field :first_name_kana, class:"form-control" %>
-　　        <%= f.text_field :last_name_kana, class:"form-control" %>
-　　    </td>
-　  　</tr>
-
-　  　<tr>
-　　    <th><%= f.label :郵便番号 %></th>
-　　    <td><%= f.text_field :postcode, class:"form-control" %></td>
-　  　</tr>
-
-　  　<tr>
-　  　  <th><%= f.label :住所 %></th>
-　　    <td><%= f.text_field :address, class:"form-control" %></td>
-　　  </tr>
-
-　  　<tr>
-　　    <th><%= f.label :電話番号 %></th>
-　　    <td><%= f.text_field :phone_number, class:"form-control" %>/td>
-　  　</tr>
-
-　  　<tr>
-　　    <th><%= f.label :メールアドレス %></th>
-　　    <td><%= f.text_field :email , class:"form-control"%></td>
-　  　</tr>
-
-　  　<tr>
-　　    <th><%= f.label :会員ステータス %></th>
-　　    <td><%= f.select :is_deleted, [["有効会員","false"],["退会済み","true"]], class:"form-control" %></td>
-　  　</tr>
-　　</table>
-
-　　<div class="row text-right">
-        <%= f.submit "変更を保存する" ,class: "btn btn-success " %>
+    <div class="row">
+      <div class="col-md-6 offset-md-1">
+        <h2 class="my-5">会員情報編集</h2>
+      </div>
     </div>
 
-  <% end %>
-  
-</div>
+    <div class="row">
+      <div class="mx-auto">
+        <%= form_with model:@customer, local:true do |f| %>
+
+          <table class="row table">
+
+            <tr>
+              <th><%= f.label :会員ID %></th>
+              <td><%= @customer.id %></td>
+　        　</tr>
+
+　        　<tr>
+　　          <th><%= f.label :氏名 %></th>
+　　          <td><%= f.text_field :first_name, class:"form-control" %>
+                  <%= f.text_field :last_name, class:"form-control" %>
+　　          </td>
+　　        </tr>
+
+　        　<tr>
+　　          <th><%= f.label :フリガナ %></th>
+　　          <td><%= f.text_field :first_name_kana, class:"form-control" %>
+　　              <%= f.text_field :last_name_kana, class:"form-control" %>
+　　          </td>
+　        　</tr>
+
+　        　<tr>
+　　          <th><%= f.label :郵便番号 %></th>
+　　          <td><%= f.text_field :postcode, class:"form-control" %></td>
+　  　      </tr>
+
+　        　<tr>
+　  　        <th><%= f.label :住所 %></th>
+　　          <td><%= f.text_field :address, class:"form-control" %></td>
+　　        </tr>
+
+　        　<tr>
+　　          <th><%= f.label :電話番号 %></th>
+　　          <td><%= f.text_field :phone_number, class:"form-control" %>/td>
+　        　</tr>
+
+　        　<tr>
+　　          <th><%= f.label :メールアドレス %></th>
+　　          <td><%= f.text_field :email , class:"form-control"%></td>
+　        　</tr>
+
+　        　<tr>
+　　          <th><%= f.label :会員ステータス %></th>
+　　          <td><%= f.select :is_deleted, [["有効会員","false"],["退会済み","true"]], class:"form-control" %></td>
+　        　</tr>
+
+　      　</table>
+
+　      　<div class="row text-right">
+              <%= f.submit "変更を保存する" ,class: "btn btn-success " %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</main>
