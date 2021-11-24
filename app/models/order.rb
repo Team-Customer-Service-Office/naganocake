@@ -2,6 +2,7 @@ class Order < ApplicationRecord
     
     
     belongs_to :costomer
+    has_many :order_detail
 
     
     validates :postcode, presence: true, length: {maximum: 7}
