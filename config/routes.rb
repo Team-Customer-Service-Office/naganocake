@@ -1,13 +1,6 @@
 Rails.application.routes.draw do
 
-  
- 
-   # 顧客側のdeviseルーティング設定
-  devise_for :customers, controllers: {
-    registrations: "customer/registrations",
-    sessions: "customer/sessions"
-  }
-  
+  devise_for :customers
   root 'homes#top'
 
   # 管理者側のdeviseルーティング設定
