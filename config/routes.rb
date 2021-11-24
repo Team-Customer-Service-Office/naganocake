@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     sessions: "customer/sessions"
   }
 
-  devise_for :customers
   root 'homes#top'
 
   # 管理者側のdeviseルーティング設定
