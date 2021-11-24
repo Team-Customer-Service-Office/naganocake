@@ -9,7 +9,7 @@
           <% else %>
             <%= "#{@category.name}一覧" %>
           <% end %>
-          <span class="small pl-3">(全<%= @items.count %>件)</span>
+          <span class="small pl-3">(全<%= @items.total_count %>件)</span>
         </h2>
         <div class="d-flex justify-content-start flex-wrap mb-5">
           <% @items.each do |item| %>
