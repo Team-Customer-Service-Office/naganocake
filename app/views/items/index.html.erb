@@ -2,9 +2,11 @@
   <div class="container">
     <div class="row">
       <%= render "homes/category", categories: @categories %>
-      <div class="col-md-9 my-5 ml-5">
-        <h2>商品一覧</h2>
-        <span class="inline-block small pl-3">(全<%= @items.count %>件)</span>
+      <div class="col-md-9 offset-md-1 my-5">
+        <h2>
+          商品一覧
+          <span class="small pl-3">(全<%= @items.count %>件)</span>
+        </h2>
         <div class="d-flex justify-content-start flex-wrap">
           <% @items.each do |item| %>
             <%= link_to item_path(item.id), class: "card m-3 stretched-link" do %>

@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   
   def index
     @address = Address.new
-    # @addresses = Address.find(params[:id])
+    # addresses = Address.find(params[:id])
     
   end
 
