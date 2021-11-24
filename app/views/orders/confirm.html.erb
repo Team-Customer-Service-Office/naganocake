@@ -1,54 +1,56 @@
 <main>
     <div class="container">
         
-        <div class="my-4">
-        <span style="background-color:pink;">注文情報確認</span>
-        </div>
-        
-        
-        <div class="row">
-            <div class="col-6">
-                <table class="table table-bordered">
-                   <thead>
-                    <th>商品名</th>
-                    <th>単価（税込）</th>
-                    <th>数量</th>
-                    <th>小計</th>
-               　　</thead>
+        <div class="row p-5">
+            <h2>注文情報確認</h2>
+
+            <div class="row">
+                <div class="col-8">
+                    <table class="table table-bordered">
+                       <thead>
+                            <th>商品名</th>
+                            <th>単価（税込）</th>
+                            <th>数量</th>
+                            <th>小計</th>
+                   　 　</thead>
+                    
+                        <tbody>
+                            <!--each do で注文履歴一覧を表示させる-->
+                            <td>
+                                <!--Order_details.item-->
+                            </td>
+                            <td>
+                                <!--Order_details.postcode-->
+                            </td>
+                            <td>
+                                <!--Order_details.quantity-->
+                            </td>
+                            <td>
+                                <!--Order_details.price-->
+                            </td>
+                        </tbody>
+                        
+                    </table>
+                    
+                </div>
+            
+                <div class="col-4"> 
+                    <strong>請求情報</strong>
+                    <table class="table table-bordered">
+                        <tr>
+                        <th>送料</th> <td>８００円？</td>
+                        </tr>
+                        <tr>
+                        <th>商品合計</th><td>税込の商品合計額</td>
+                        </tr>
+                        <tr>
+                        <th>請求金額</th><td>ああああ</td>
+                        </tr>
+                    </table>
+                </div>
                 
-                <tbody>
-                    <!--each do で注文履歴一覧を表示させる-->
-                    <td>
-                        <!--Order_details.item-->
-                    </td>
-                    <td>
-                        <!--Order_details.postcode-->
-                    </td>
-                    <td>
-                        <!--Order_details.quantity-->
-                    </td>
-                    <td>
-                        <!--Order_details.price-->
-                    </td>
-                </table>
-            </div>
-        
-            <div class="col-3"> 
-                <strong>請求情報</strong>
-                <table class="table table-bordered">
-                    <tr>
-                    <th>送料</th> <td>８００円？</td>
-                    </tr>
-                    <tr>
-                    <th>商品合計</th><td>税込の商品合計額</td>
-                    </tr>
-                    <tr>
-                    <th>請求金額</th><td>ああああ</td>
-                    </tr>
-                </table>
             </div>
         </div>
-        
     
     </div>
 </main>

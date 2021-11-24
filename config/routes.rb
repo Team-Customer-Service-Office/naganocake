@@ -23,8 +23,9 @@ Rails.application.routes.draw do
   resources :cart_items, except: [:show, :new, :edit]
   delete '/:id' => 'cart_items#all_destroy'
 
+  get 'items/search' => 'items#search', as: 'search'
   resources :items, only: [:index, :show]
-
+  
   resources :customers, only: [:show, :edit, :update]
   get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
   patch '/' => 'customers#out'
