@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item=CartItem.find_by(params[:id])
+    @cart_item=CartItem.find_by
     
     
     
@@ -25,7 +25,7 @@ class CartItemsController < ApplicationController
   def update
     @items =current_customer.cart_items
     if @items.update(cart_item_params)
-    redirect_to cart_item_path
+    redirect_to cart_items_path
     else
       render :index
     end
@@ -34,7 +34,7 @@ class CartItemsController < ApplicationController
   def destroy
     @items =current_customer.cart_items
     @items.destroy
-    redirect_to cart_item_path
+    redirect_to cart_items_path
   end
 
   def all_destroy
