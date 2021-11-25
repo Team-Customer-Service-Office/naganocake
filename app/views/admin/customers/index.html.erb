@@ -25,8 +25,9 @@
                 <td><%= customer.id %></td>
                 <td>
                   <!--フルネームにするための記述-->
-                  <%= link_to customer.first_name, admin_customers_path(customer.id) %>
-                  <%= link_to customer.last_name, admin_customers_path(customer.id) %>
+                  <%= link_to admin_customers_path(customer.id) do %>
+                    <%=  customer.first_name + customer.last_name %>
+                  <% end %>
                 </td>
                 <td><%= customer.email %></td>
                 <td><% if customer.is_deleted == false %>
