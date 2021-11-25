@@ -3,7 +3,6 @@ class AddressesController < ApplicationController
   def index
     @address = Address.new
     @addresses = current_customer.address
-    
   end
 
   def create

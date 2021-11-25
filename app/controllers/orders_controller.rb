@@ -26,4 +26,9 @@ class OrdersController < ApplicationController
   end
   
   
+  private
+  def order_params
+    params.require(:order).permit(:postcode, :address, :full_name)
+  end
+  
 end

@@ -18,16 +18,16 @@ Rails.application.routes.draw do
 
 
   #会員側のルーティング設定
-  resources :addresses, except: [:show, :new]
+  resources :addresses, except: [:show, :new] 
 
   # resources の下にいると？うまく遷移しなかったので上にあげてみました。
   get 'orders/confirm' => 'orders#confirm', as: 'confirm'
   get 'orders/complete' => 'orders#complete', as: 'complete'
   resources :orders, except: [:edit, :update, :destroy]
 
-
-  resources :cart_items, except: [:show, :new, :edit] 
   delete 'cart_items/alldestroy' => 'cart_items#all_destroy', as: 'all_destroy'
+  resources :cart_items, except: [:show, :new, :edit] 
+ 
   
 
   get 'items/search' => 'items#search', as: 'search'
