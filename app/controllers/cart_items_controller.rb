@@ -5,12 +5,13 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    if @cart = current_customer.cart_item.find_by(params[:cart_item][:item_id]).nil?
+    @cart = current_customer.cart_item.find_by(params[:cart_item][:item_id])
+    if @cart.nil?
       @cart_item = current_customer.cart_items.new(cart_item_params)
       @cart_item.save
     else 
       @cart.quantity +=  params[:cart_item][:quantity].to_i
-      @cart.update
+      @cart.save
     end
     redirect_to cart_items_path
   end
