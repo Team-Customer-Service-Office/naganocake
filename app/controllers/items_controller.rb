@@ -12,11 +12,13 @@ class ItemsController < ApplicationController
   def show
     @categories = Category.all
     @item = Item.find(params[:id])
-    binding.pry
     @cart_item = CartItem.new
   end
   
   
+  private
+  
+ 
  
   
 end
