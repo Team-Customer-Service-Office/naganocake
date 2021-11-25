@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     registrations: "customer/registrations",
     sessions: "customer/sessions"
   }
-  
+
 
   root 'homes#top'
 
@@ -27,15 +27,12 @@ Rails.application.routes.draw do
   resources :orders, except: [:edit, :update, :destroy]
 
 
-  resources :cart_items, except: [:show, :new, :edit] 
+  resources :cart_items, except: [:show, :new, :edit]
   delete 'cart_items/alldestroy' => 'cart_items#all_destroy', as: 'all_destroy'
-  
+
 
   get 'items/search' => 'items#search', as: 'search'
   resources :items, only: [:index, :show]
-
-  get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-  patch '/' => 'customers#out'
 
   # 管理者側のルーティング設定
   namespace :admin do
@@ -49,6 +46,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/out' => 'customers#out', as: 'out'
     resources :customers, only: [:show, :edit, :update]
   end
 
