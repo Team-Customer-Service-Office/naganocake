@@ -9,6 +9,7 @@
         <%= form_with model:@order, local:true do |f| %>
         
             <strong>支払い方法</strong>
+            
             <div class="form_group ml-4">
               <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
               <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], for:"order_payment_method_credit_card" %>
@@ -19,11 +20,13 @@
               <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], for:"order_payment_method_transfer" %>
             </div>
             
+            
             <strong>お届け先</strong>
+            
            <div class="form_group ml-4">
                 <%= f.radio_button :address, '0' %>
                 <%= f.label :address, "ご自身の住所", value: 0 %>
-                <!--current_user.address??-->
+                　<%= current_customer.user_address %>
             </div>
             
             <div class="form_group ml-4">

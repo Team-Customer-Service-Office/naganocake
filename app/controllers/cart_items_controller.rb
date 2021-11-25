@@ -5,19 +5,15 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item=CartItem.find_by
-    
-    
-    
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-    @cart_item.save
+    @cart = current_customer.cart_item.find_by(params[:cart_item][:item_id])
+    if @cart.nil?
+      @cart_item = current_customer.cart_items.new(cart_item_params)
+      @cart_item.save
+    else 
+      @cart.quantity +=  params[:cart_item][:quantity].to_i
+      @cart.save
+    end
     redirect_to cart_items_path
-    # if CartItem.find_by(item.id)
-    #   CartItem.amount.to_i + Item.amount.to_i
-    # else
-    # CartItem.new
-    # end
   end
   
 
@@ -32,14 +28,14 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
-    @items =current_customer.cart_items
+    @items =current_customer.cart_items.find(params[:id])
     @items.destroy
     redirect_to cart_items_path
   end
 
   def all_destroy
     @items =current_customer.cart_items
-    @item.destroy_all
+    @items.destroy_all
     redirect_to cart_items_path
   end
   
