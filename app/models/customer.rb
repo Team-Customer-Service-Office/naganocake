@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :cart_item
-  has_many :address
+  has_many :addresses
 
   validates :last_name,  presence: true
   validates :first_name, presence: true
@@ -24,7 +24,7 @@ class Customer < ApplicationRecord
   
   
   def user_address
-        '〒' + postcode + ' ' + address + ' ' + first_name + last_name
+        '〒'+postcode+' '+address+' '+first_name+last_name
   end
 
 end
