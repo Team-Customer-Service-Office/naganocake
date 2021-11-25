@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   
   def index
     @address = Address.new
-    @addresses = current_customer.address
+    @addresses = current_customer.addresses
   end
 
   def create
