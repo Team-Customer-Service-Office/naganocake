@@ -16,6 +16,9 @@ class ItemsController < ApplicationController
   end
   
   
+  private
+  
+ 
  
   
 end
