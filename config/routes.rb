@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  
-  
+
+
     devise_for :customers, controllers: {
     registrations: "customer/registrations",
     sessions: "customer/sessions"
@@ -30,8 +30,7 @@ Rails.application.routes.draw do
 
   get 'items/search' => 'items#search', as: 'search'
   resources :items, only: [:index, :show]
-  
-  resources :customers, only: [:show, :edit, :update]
+
   get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
   patch '/' => 'customers#out'
 
@@ -45,4 +44,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, except: :destroy
   end
+
+  scope module: :customer do
+    resources :customers, only: [:show, :edit, :update]
+  end
+
 end
