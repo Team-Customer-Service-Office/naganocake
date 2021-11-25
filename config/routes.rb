@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+   # 顧客側のdeviseルーティング設定
+  devise_for :customers, controllers: {
 
-    devise_for :customers, controllers: {
     registrations: "customer/registrations",
     sessions: "customer/sessions"
   }
+  
 
   root 'homes#top'
 
@@ -25,8 +27,9 @@ Rails.application.routes.draw do
   resources :orders, except: [:edit, :update, :destroy]
 
 
-  resources :cart_items, except: [:show, :new, :edit]
-  delete '/:id' => 'cart_items#all_destroy'
+  resources :cart_items, except: [:show, :new, :edit] 
+  delete 'cart_items/alldestroy' => 'cart_items#all_destroy', as: 'all_destroy'
+  
 
   get 'items/search' => 'items#search', as: 'search'
   resources :items, only: [:index, :show]

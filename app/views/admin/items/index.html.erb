@@ -6,11 +6,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="mx-auto col-md-8">
+      <div class="mx-auto col-md-8 mb-5">
         <%= link_to new_admin_item_path do %>
           <i class="fas fa-folder-plus fa-2x" style="color:#ED52A1"></i>
         <% end %>
-        <table class="table mb-5">
+        <table class="table mb-5 text-center">
           <thead>
             <tr>
               <th>商品ID</th>
@@ -38,6 +38,7 @@
             <% end %>
           </tbody>
         </table>
+        <%= paginate @items%>
       </div>
     </div>
   </div>

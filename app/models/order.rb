@@ -1,9 +1,8 @@
 class Order < ApplicationRecord
     
     
-    belongs_to :costomer
+    belongs_to :customer
     has_many :order_detail
-
     
     validates :postcode, presence: true, length: {maximum: 7}
     validates :address, presence: true
