@@ -20,14 +20,14 @@ class Customer::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def out
-    @customer = Customer.find(params[:id])
-    if @customer.update(is_deleted: false)
+    @customer = current_customer
+    if @customer.update(is_deleted: true)
        #URLを踏ませずにコントローラーから直接サインアウトの指示を出す
-       sign_out current_custome
+       sign_out current_customer
     end
        redirect_to root_path
   end

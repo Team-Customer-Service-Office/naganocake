@@ -1,48 +1,47 @@
 <main>
   <div class="container">
-
     <div class=“row”>
       <div class="col-md-6 offset-md-1">
         <h2 class="my-5">会員一覧</h2>
       </div>
     </div>
-
     <div class=“row”>
-      <table class="table">
-
-        <thead>
-          <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @customers.each do |customer| %>
+      <div class="mx-auto col-md-8 mb-5">
+        <%= link_to new_admin_registration_path do %>
+           <i class="fas fa-folder-plus fa-2x" style="color:#ED52A1"></i>
+        <% end %>
+        <table class="table mb-5 text-center">
+          <thead>
             <tr>
-              <td><%= customer.id %></td>
-              <td>
-                <!--フルネームにするための記述-->
-                <%= link_to customer.first_name, admin_customers_path(customer.id) %>
-                <%= link_to customer.last_name, admin_customers_path(customer.id) %>
-              </td>
-              <td><%= customer.email %></td>
-              <td><% if customer.is_deleted == false %>
-                  <p class="font-weight-bold text-success">有効</p>
-                  <% else %>
-                  <p class="font-weight-bold text-secondary">退会</p>
-                  <% end %>
-              </td>
+              <th>会員ID</th>
+              <th>氏名</th>
+              <th>メールアドレス</th>
+              <th>ステータス</th>
             </tr>
-          <% end %>
-          <!--kaminariを使用するための記述-->
-          <%= paginate @customers %>
-        </tbody>
-
-      </table>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer| %>
+              <tr>
+                <td><%= customer.id %></td>
+                <td>
+                  <!--フルネームにするための記述-->
+                  <%= link_to customer.first_name, admin_customers_path(customer.id) %>
+                  <%= link_to customer.last_name, admin_customers_path(customer.id) %>
+                </td>
+                <td><%= customer.email %></td>
+                <td><% if customer.is_deleted == false %>
+                    <p class="font-weight-bold text-success">有効</p>
+                    <% else %>
+                    <p class="font-weight-bold text-secondary">退会</p>
+                    <% end %>
+                </td>
+              </tr>
+            <% end %>
+            <!--kaminariを使用するための記述-->
+            <%= paginate @customers %>
+          </tbody>
+        </table>
+      </div>
     </div>
-
   </div>
 </main>
