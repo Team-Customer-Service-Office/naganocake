@@ -1,33 +1,42 @@
 <main>
   <div class="container">
     <div class="row">
+      <div class="col-md-6 offset-md-1">
+        <h2 class="my-5">ログイン</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-2">
+        <h3 class="my-3">会員の方はこちらからログイン</h3>
+      </div>
+    </div>
+    <div class="row">
       <div class="mx-auto">
-        <div class="my-3">
-          <h2>ログイン</h2>
-        </div>
-        <div class="my-3">
-          <h3>会員の方はこちらからログイン</h3>
-        </div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field d-flex flex-row justify-content-between mb-2">
-            <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+          <table class="table table-borderless mb-5" style="width: 600px">
+            <tbody>
+              <tr>
+                <th><%= f.label :メールアドレス %></th>
+                <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com",class: "form-control" %></td>
+              </tr>
 
-          <div class="field d-flex flex-row justify-content-between mb-2">
-            <%= f.label :パスワード %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </div>
+              <tr>
+                <th><%= f.label :パスワード %></th>
+                <td colspan="2"><%= f.password_field :password, autocomplete: "current-password",class: "form-control" %></td>
+              </tr>
+            </tbody>
+          </table>
 
-          <div class="actions text-center">
-            <%= f.submit "ログイン", class: "btn btn-sm btn-primary w-25 mt-3 mb-4" %>
+          <div class="col text-center mb-5">
+            <%= f.submit "ログイン", class: "btn btn-sm btn-primary w-25 mt-3" %>
           </div>
         <% end %>
-        
-        <div class="mt-4">
-          <h3 class="mb-3">会員登録がお済でない方</h3>
-          <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-2">
+        <h3>会員登録がお済でない方</h3>
+        <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
       </div>
     </div>
   </div>
