@@ -1,7 +1,8 @@
 class Address < ApplicationRecord
-  
+
     # belongs_to :customer_id
     belongs_to :customer
+
 
     validates :postcode, presence: true, length: {maximum: 7}
     validates :address, presence: true
@@ -9,7 +10,7 @@ class Address < ApplicationRecord
 
 
     def full_address
-        '〒' + postcode + ' ' + address + ' ' + full_name
+        '〒' + postcode + ' ' + address + ' ' + name
     end
 
 end
