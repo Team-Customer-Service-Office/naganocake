@@ -1,17 +1,15 @@
 <main>
     <div class="container">
-        
-        <div class="p-5">
-        <h2>注文履歴詳細<h2>
-        </div>
-        
-        <div class="row">
+        <div class= "row">
+            <div class="col-md-8 offset-md-1 my-5">
+            <h2>注文履歴詳細<h2>
+            </div>
             <div class="col-6">
                 <strong>注文情報</strong>
-                <table class="table table-bordered">
-                   
+                <table class="table table-bordered m-0">
                     <tr>
-                    <th>注文日</th> <td><%= @order.created_at.strftime('%Y/%m/%d') %> </td>
+                    <th>注文日</th>
+                    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
                     </tr>
                     <tr>
                     <th>配送先</th>
@@ -22,15 +20,15 @@
                     </td>
                     </tr>
                     <tr>
-                    <th>支払方法</th><td><%= @order.payment_method %></td>
+                    <th>支払方法</th>
+                    <td><%= @order.payment_method %></td>
                     </tr>
                     <tr>
-                    <th>ステータス</th><td><%= @order.order_status %></td>
+                    <th>ステータス</th>
+                    <td><%= @order.order_status %></td>
                     </tr>
-                    
                 </table>
             </div>
-        
             <div class="col-3"> 
                 <strong>請求情報</strong>
                 <table class="table table-bordered">
@@ -45,7 +43,6 @@
                     </tr>
                 </table>
         　　</div>
-        
             <div class="col-8">
                 <strong>注文内容</strong>
                     <table class="table table-bordered">
@@ -59,13 +56,12 @@
                             <% @order.order_details.each do |item| %>
                             <tr>
                             <td><%= item.item.name %></td>
-                            <td><%= item.item.price_without_tax %></td>
+                            <td><%= (item.item.with_tax_price).round %></td>
                             <td><%= item.quantity %></td>
-                            <td><%= item.item.price_without_tax * item.quantity %></td>
+                            <td><%= (item.item.with_tax_price * item.quantity).round %></td>
                             </tr>
                             <% end %>
                         </tbody>
-                        
                     </table>
             </div>
    　　 </div>
