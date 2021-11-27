@@ -32,13 +32,11 @@
           </tr>
           <tr>
             <th>販売ステータス</th>
-            <td>
-              <% if @item.is_active == "sale" %>
-                <p class="font-weight-bold text-success">販売中</p>
-              <% else %>
-                <p class="font-weight-bold text-secondary">販売停止中</p>
-              <% end %>
-            </td>
+            <% if @item.is_active == "sale" %>
+              <td class="font-weight-bold text-success">販売中</td>
+            <% else %>
+              <td class="font-weight-bold text-secondary">販売停止中</td>
+            <% end %>
           </tr>
         </table>
       </div>

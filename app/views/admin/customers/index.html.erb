@@ -6,11 +6,8 @@
       </div>
     </div>
     <div class=“row”>
-      <div class="mx-auto col-md-8 mb-5">
-        <%= link_to new_admin_registration_path do %>
-           <i class="fas fa-folder-plus fa-2x" style="color:#ED52A1"></i>
-        <% end %>
-        <table class="table mb-5 text-center">
+      <div class="mx-auto col-md-8">
+        <table class="table text-center  mb-5">
           <thead>
             <tr>
               <th>会員ID</th>
@@ -25,23 +22,22 @@
                 <td><%= customer.id %></td>
                 <td>
                   <!--フルネームにするための記述-->
-                  <%= link_to admin_customers_path(customer.id) do %>
+                  <%= link_to admin_customer_path(customer.id) do %>
                     <%=  customer.first_name + customer.last_name %>
                   <% end %>
                 </td>
                 <td><%= customer.email %></td>
-                <td><% if customer.is_deleted == false %>
-                    <p class="font-weight-bold text-success">有効</p>
-                    <% else %>
-                    <p class="font-weight-bold text-secondary">退会</p>
-                    <% end %>
-                </td>
+                <% if customer.is_deleted == "enable" %>
+                  <td class="font-weight-bold text-success">有効</td>
+                <% else %>
+                  <td class="font-weight-bold text-secondary">退会</td>
+                <% end %>
               </tr>
             <% end %>
-            <!--kaminariを使用するための記述-->
-            <%= paginate @customers %>
           </tbody>
         </table>
+        <!--kaminariを使用するための記述-->
+        <%= paginate @customers %>
       </div>
     </div>
   </div>

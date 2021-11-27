@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-        <%= form_with model:@customer, local:true do |f| %>
+        <%= form_with model: [:admin, @customer], local:true do |f| %>
           <table class="table table-borderless mb-5">
             <tbody>
               <tr>
@@ -73,7 +73,12 @@
               </tr>
 　          　<tr>
 　　            <th><%= f.label :会員ステータス %></th>
-　　            <td><%= f.select :is_deleted, [["有効会員","false"],["退会済み","true"]], class:"form-control" %></td>
+　　            <td>
+                  <%= f.radio_button :is_deleted, :enable %>
+                  <%= f.label :is_deleted, Customer.is_deleteds_i18n[:enable] %>
+                  <%= f.radio_button :is_deleted, :disable %>
+                  <%= f.label :is_deleted, Customer.is_deleteds_i18n[:disable] %>
+                </td>
 　        　  </tr>
             </tbody>
 　      　</table>
