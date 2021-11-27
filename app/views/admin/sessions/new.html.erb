@@ -1,22 +1,27 @@
 <main>
-  <div class='container'>
-    <div class='row'>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-1">
+        <h2 class="my-5">管理者ログイン</h2>
+      </div>
+    </div>
+    <div class="row">
       <div class="mx-auto">
-        <div class='col-md-6 offset-md-1'>
-          <h2 class="my-5">管理者ログイン</h2>
-        </div>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field d-flex flex-row justify-content-around mb-3">
-            <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+          <table class="table table-borderless mb-5" style="width: 600px">
+            <tbody>
+              <tr>
+                <th><%= f.label :メールアドレス %></th>
+                <td colspan="2"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %></td>
+              </tr>
 
-          <div class="field d-flex flex-row justify-content-around mb-3">
-            <%= f.label :パスワード %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </div>
-
-          <div class="actions text-center">
+              <tr>
+                <th><%= f.label :パスワード %></th>
+                <td colspan="2"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="col text-center mb-5">
             <%= f.submit "ログイン", class: 'btn btn-sm btn-primary w-25 mt-3' %>
           </div>
         <% end %>

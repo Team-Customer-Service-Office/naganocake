@@ -1,22 +1,31 @@
 class CartItemsController < ApplicationController
   def index
-    @items = current_customer.cart_items
+    @items = current_customer.cart_items.all
     @total = 0
   end
 
   def create
-    @cart = current_customer.cart_items.find_by(params[:cart_item][:item_id])
-    if @cart.nil?
-      @cart_item = current_customer.cart_items.new(cart_item_params)
-      @cart_item.save
-    else
-      @cart.quantity +=  params[:cart_item][:quantity].to_i
-      @cart.save
+    @cart = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+    if @cart.present?
+      @cart_item.quantity += @cart.quantity
+      @cart.destroy
     end
+    @cart_item.save
     redirect_to cart_items_path
   end
 
-
+  # def create
+  #   @cart = current_customer.cart_items.find_by(params[:cart_item][:item_id])
+  #   if @cart.nil?
+  #     @cart_item = current_customer.cart_items.new(cart_item_params)
+  #     @cart_item.save
+  #   else
+  #     @cart.quantity +=  params[:cart_item][:quantity].to_i
+  #     @cart.save
+  #   end
+  #   redirect_to cart_items_path
+  # end
 
   def update
     @items =current_customer.cart_items
