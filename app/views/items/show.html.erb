@@ -1,2 +1,26 @@
-<h1>Customer::Items#show</h1>
-<p>Find me in app/views/customer/items/show.html.erb</p>
+<main>
+  <div class="container">
+    <div class="row">
+      <%= render "homes/category", categories: @categories %>
+      <div class="col-md-4 my-5 ml-5">
+        <%= attachment_image_tag @item, :image, format: '.jpeg', size: "300x200" %>
+      </div>
+      <div class="col-md-5 my-5">
+        <h2><%= @item.name %></h2>
+        <p class="mb-5"><%= @item.description %></p>
+        <p class="mb-5">¥<%= (@item.price_without_tax*1.08).round.to_s(:delimited) %><span class="inline-block small">(税込)</span></p>
+        <div class="text-center mb-5">
+          
+        <%= form_with model:@cart_item, local:true do |f| %>
+          <div class="form-group" style="display:inline-flex">
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {prompt: "個数選択"}, class: 'form-control mr-3' %>
+            <%= f.submit 'カートに入れる', class: 'btn btn-success' %>
+          </div>
+        <% end %>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

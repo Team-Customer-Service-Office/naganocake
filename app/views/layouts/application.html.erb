@@ -5,11 +5,75 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=devise-width, initial-scale=1, maximum-scale=1" >
+    <script src="https://kit.fontawesome.com/a9e277fd5e.js" crossorigin="anonymous"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+    <div class="mv">
+    <nav class="navbar navbar-expand-lg">
+
+      <div class="container">
+
+         <div class="col-4">
+            <%= link_to root_path class:"navbar_brand" do %>
+            <%= image_tag 'log_back_clear.png' %>
+            <% end %>
+         </div>
+
+        <!--if customer_signed_in? カスタマーじっそうされたら追加する-->
+
+          <div class="navbar_nav ml-auto">
+              <ul class="nav pull-right nav-pills">
+                <% if admin_signed_in? %>
+                  <li><%= link_to "商品一覧", admin_items_path, class:"nav-link btn btn-outline-dark mx-2" %></li>
+                  <li><%= link_to "会員一覧", admin_customers_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "注文履歴一覧", admin_orders_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "ジャンル一覧", admin_categories_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                <% elsif customer_signed_in?%>
+
+                  <li><%= link_to "マイページ", customer_path(current_customer.id), class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "商品一覧", items_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "カート", cart_items_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+
+                  <!--ここにいれる-->
+                  <div class="col text-right">
+                    <p class="font-small">ようこそ、<%= current_customer.first_name %>さん！</p>
+                  </div>
+
+
+                <% else %>
+                  <!--各種機能ページ実装されたらパスを変更する-->
+                  <li><%= link_to "About", about_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "商品一覧", items_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "新規登録", new_customer_registration_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                  <li><%= link_to "ログイン", customer_session_path, class:"nav-link btn btn-outline-dark  mx-2" %></li>
+                <% end %>
+              </ul>
+          </div>
+    </nav>
+    </div>
+
     <%= yield %>
+
+    <footer>
+      <div class="p-3 text-white">
+        <div class="container">
+          <div class="row">
+            <div class="mx-auto">
+              <p>©2021 TeamCustomerServiceOffice︎</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
+
+
 </html>

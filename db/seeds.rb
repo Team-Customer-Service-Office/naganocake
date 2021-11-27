@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Admin側のemailモデル、passwordモデルの追加
+Admin.create(
+    email: 'admin@admin',
+    password: 'test01'
+    )
