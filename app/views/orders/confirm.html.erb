@@ -1,56 +1,81 @@
 <main>
     <div class="container">
         
-        <div class="row p-5">
-            <h2>注文情報確認</h2>
-
-            <div class="row">
-                <div class="col-8">
-                    <table class="table table-bordered">
-                       <thead>
-                            <th>商品名</th>
-                            <th>単価（税込）</th>
-                            <th>数量</th>
-                            <th>小計</th>
-                   　 　</thead>
-                    
-                        <tbody>
-                            <!--each do で注文履歴一覧を表示させる-->
-                            <td>
-                                <!--Order_details.item-->
-                            </td>
-                            <td>
-                                <!--Order_details.postcode-->
-                            </td>
-                            <td>
-                                <!--Order_details.quantity-->
-                            </td>
-                            <td>
-                                <!--Order_details.price-->
-                            </td>
-                        </tbody>
-                        
-                    </table>
-                    
-                </div>
-            
-                <div class="col-4"> 
-                    <strong>請求情報</strong>
-                    <table class="table table-bordered">
-                        <tr>
-                        <th>送料</th> <td>８００円？</td>
-                        </tr>
-                        <tr>
-                        <th>商品合計</th><td>税込の商品合計額</td>
-                        </tr>
-                        <tr>
-                        <th>請求金額</th><td>ああああ</td>
-                        </tr>
-                    </table>
-                </div>
-                
-            </div>
+        <div class="p-5">
+        <h2>注文情報確認</h2>
         </div>
-    
+        
+        <div class="row">
+            <div class="col-sm-9">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>商品名</th>
+                        <th>単価（税込）</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                        <% @item.each do |item| %>
+                        <td>
+                            <%= item.item.name %>
+                        </td>
+                        <td>
+                          　<%= item.item.with_tax_price %>
+                        </td>
+                        <td>
+                        　　<%= item.quantity %>
+                        </td>
+                        <td>
+                        　　<%= item.subtotal  %>
+                        </td>
+                        </tr>
+                    </tbody>
+                    
+                    
+                </table>
+            </div>
+        
+            <div class="col-sm-3"> 
+                <table class="table table-bordered">
+                    <tr>
+                    <th>送料</th> <td>800</td>
+                    </tr>
+                    <tr>
+                    <th>商品合計</th><td><%= @total += item.subtotal  %></td>
+                    </tr>
+                    <tr>
+                    <th>請求金額</th><td><%= @total += 800 %></td>
+                    </tr>
+                </table>
+                <% end %>
+        　　</div>
+        　　
+        　　<div class="row">
+        　　<strong>支払方法</strong>
+        　　<%= Order.payment_methods_i18n[@order.payment_method] %>
+        　　
+        　　<strong>お届け先</strong>
+        　　〒<%= @order.postcode %>
+        　　<%= @order.address %>
+        　　<%= @order.full_name %>
+        
+            </div>
+            
+            <%= form_with model:@orders, url: orders_path, local:true do |f| %>
+            
+            <%= f.hidden_field :postcode, value: @order.postcode %>
+            <%= f.hidden_field :address, value: @order.address %>
+            <%= f.hidden_field :full_name, value: @order.full_name %>
+            <%= f.hidden_field :payment_method, value: @order.payment_method %>
+            <%= f.hidden_field :postage, value:'800'  %>
+            <%= f.hidden_field :order_status, value: 'wait' %>
+            <%= f.hidden_field :customer_id, value: current_customer.id %>
+            <%= f.hidden_field :total_payment, value: @total %>
+            
+            <%= f.submit "注文を確定する", class:"mt-2 btn btn-primary mb-5" %> 
+            <% end %>
+       
     </div>
 </main>
