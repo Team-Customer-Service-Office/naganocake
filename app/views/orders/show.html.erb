@@ -23,11 +23,11 @@
           </tr>
           <tr>
             <th class="table-warning">支払方法</th>
-            <td><%= @order.payment_method %></td>
+            <td><%= Order.payment_methods_i18n[@order.payment_method] %></td>
           </tr>
           <tr>
             <th class="table-warning">ステータス</th>
-            <td><%= @order.order_status %></td>
+            <td><%= Order.order_statuses_i18n[@order.order_status] %></td>
           </tr>
         </table>
       </div>

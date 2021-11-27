@@ -36,7 +36,7 @@
                   <%= (order.calc_total()*1.08).round.to_s(:delimited) %>
                 </td>
                 <td>
-                  <!--ここに注文ステータス-->
+                  <%= Order.order_statuses_i18n[order.order_status] %>
                 </td>
                 <td>
                   <%= link_to "表示する", order_path(order), class:"btn btn-primary"  %>
