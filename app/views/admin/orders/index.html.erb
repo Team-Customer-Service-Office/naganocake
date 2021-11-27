@@ -19,21 +19,23 @@
             </thead>
             
             <tbody>
-                <!--each do で注文履歴一覧を表示させる-->
+                   <% @orders.each do |order| %>
+                <tr>
                 <td>
-                    <!--Order-details.created_at day-->
+                   <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'),  admin_order_path(order.id) %>
                 </td>
                 <td>
-                    <!--Order_details.postcode-->
-                    <!--Order_details.address-->
-                    <!--Order_details.full_name-->
+                   <%= order.item.name %>
                 </td>
                 <td>
-                    <!--Order_details.quantity-->
+                   <%= order.quantity %>
                 </td>
                 <td>
-                    <!--Order_details.price-->
+                    <%= Order.order_statuses_i18n[order.order.order_status] %>
+                    
                 </td>
+                </tr>
+                <% end %>
             </tbody>
         </table>
         

@@ -23,15 +23,19 @@
                         <th>配送先</th><td><%= @order.postcode_address %></td>
                     </tr>
                     <tr>
-                        <th>支払方法</th><td><%= @order.payment_method %></td>
+                        <th>支払方法</th><td><%= Order.payment_methods_i18n[@order.payment_method] %></td>
                     </tr>
                     <tr>
-                        <!--ここ全然わからんなにこれ-->
-                        <%= form_with model:@order, local: true do |f| %>
+                        <%= form_with model: @order, local:true do |f| %>
                         <th>注文ステータス</th>
-                        <td><%= f.select :order_status, options_from_collection_for_select(Order.order_status, id, :order_status  %> <%= f.submit "更新", class:"btn btn-success" %></td>
+                        <td>
+                          <%= f.select :order_status, [['入金待ち','0'],['入金確認','1'],['製作中','2'],['発送準備中','3'],['発送済み','4']] %>
+                          <%= f.submit "更新", class:"btn btn-success" %>
+                        </td>
                         <% end %>
                     </tr>
+                    
+                    
                 </table>
         　　</div>
         
@@ -48,22 +52,21 @@
                     </thead>
                     
                     <tbody>
-                        <!--each do で注文履歴一覧を表示させる-->
+                        <% @item.each do |item| %>
                         <td>
-                            <!--Order-details.created_at day-->
+                            <%= item.name %>
                         </td>
                         <td>
-                            <!--Order_details.postcode-->
-                            <!--Order_details.address-->
-                            <!--Order_details.full_name-->
+                            <%= item.item.price_without_tax %>
                         </td>
                         <td>
-                            <!--Order_details.quantity-->
+                            <%= item.quantity %>
                         </td>
                         <td>
-                            <!--Order_details.price-->
+                            <%= item.item.price_without_tax * item.quantity %>
                         </td>
                         
+                        <% end %>
                         <!--form_with で製作ステータスの更新させる-->
                         
                         <td>
@@ -80,13 +83,13 @@
            <div class="col-2">
                <table>
                    <tr>
-                       <th>商品合計</th><td></td>
+                       <th>商品合計</th><td><%= @order.total_payment-800 %>円</td>
                    </tr>
                    <tr>
-                       <th>送料</th><td></td>
+                       <th>送料</th><td>800円</td>
                    </tr>
                    <tr>
-                       <th>請求金額合計</th><td></td>
+                       <th>請求金額合計</th><td><%= @order.total_payment %>円</td>
                    </tr>
                </table>
            </div>

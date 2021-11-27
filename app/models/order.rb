@@ -8,6 +8,10 @@ class Order < ApplicationRecord
     validates :address, presence: true
     validates :full_name, presence: true
     validates :payment_method, presence: true
+    validates :postaga,  presence: true
+    validates :total_payment,  presence: true
+    validates :order_status,  presence: true
+    
     
     enum payment_method: { credit_card: 0, transfer: 1 }
       
