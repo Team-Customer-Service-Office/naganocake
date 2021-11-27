@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
   
   def index
+    @order = current_customer.orders
   end
 
   def show
-    
+    @order = current_customer.orders.find(params[:id])
   end
 
   def new
@@ -36,18 +37,20 @@ class OrdersController < ApplicationController
   def create 
     @orders=Order.new(confirm_params)
     @orders.save
+    
+    current_customer.cart_items.each do |item|
+      @item = OrderDetail.new
+      @item.item_id = item.item_id
+      @item.quantity = item.quantity
+      @item.price = item.item.price_without_tax
+      @item.order_id = @orders.id
+      @item.production_status = '着手不可'
+      @item.save
+    end
+    
+    current_customer.cart_items.destroy_all
+    
   end
-  
-  
-  
-  
-  
-
-  
-
-  def complete
-  end
-  
   
   private
   def order_params
