@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
   #会員側のルーティング設定
-  resources :addresses, except: [:show, :new] 
+  resources :addresses, except: [:show, :new]
 
   # resources の下にいると？うまく遷移しなかったので上にあげてみました。
   post 'orders/confirm' => 'orders#confirm', as: 'confirm'
@@ -27,15 +27,13 @@ Rails.application.routes.draw do
   resources :orders, except: [:edit, :update, :destroy]
 
   delete 'cart_items/alldestroy' => 'cart_items#all_destroy', as: 'all_destroy'
-  resources :cart_items, except: [:show, :new, :edit] 
+  resources :cart_items, except: [:show, :new, :edit]
 
   get 'items/search' => 'items#search', as: 'search'
   resources :items, only: [:index, :show]
 
   # 管理者側のルーティング設定
   namespace :admin do
-
-
     resources :order_details, only: :update
     resources :orders, only: [:index, :show, :update]
     resources :categories, only: [:index, :create, :edit, :update]
