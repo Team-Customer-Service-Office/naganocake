@@ -1,4 +1,6 @@
 class Admin::OrderDetailsController < ApplicationController
+ before_action :authenticate_admin!
+  
   def update
     @order_detail = OrderDetail.find(params[:id])# production_statusでどれのボタンを押されたか特定する
     @order = order_detail.order# 注文商品から注文テーブルの呼び出し
@@ -17,4 +19,5 @@ class Admin::OrderDetailsController < ApplicationController
   def order_detail_params
     params.require(:order_detail).permit(:production_status)
   end
+  
 end
