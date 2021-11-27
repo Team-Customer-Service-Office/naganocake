@@ -2,17 +2,17 @@
 
 <main>
     <div class="container">
-        
+
         <div class="row">
           <div class="col-md-6 offset-md-1">
             <h2 class="my-5">注文履歴詳細</h2>
           </div>
         </div>
-        
-        <div class="col-6"> 
+
+        <div class="col-6">
                 <strong>請求情報</strong>
                 <table class="table table-bordered">
-                    
+
                     <tr>
                         <th>購入者</th> <td><%= @order.full_name %></td>
                     </tr>
@@ -26,7 +26,7 @@
                         <th>支払方法</th><td><%= Order.payment_methods_i18n[@order.payment_method] %></td>
                     </tr>
                     <tr>
-                        <%= form_with model: @order, local:true do |f| %>
+                        <%= form_with model: [:admin, @order], local:true do |f| %>
                         <th>注文ステータス</th>
                         <td>
                           <%= f.select :order_status, [['入金待ち','0'],['入金確認','1'],['製作中','2'],['発送準備中','3'],['発送済み','4']] %>
@@ -34,11 +34,11 @@
                         </td>
                         <% end %>
                     </tr>
-                    
-                    
+
+
                 </table>
         　　</div>
-        
+
         <div class="row">
             <div class="col-6">
                 <table class="table table-bordered">
@@ -50,36 +50,44 @@
                         <th>製作ステータス</th>
                         <th></th>
                     </thead>
-                    
+
                     <tbody>
-                        <% @item.each do |item| %>
+                        <% @order_details.each do |order_detail| %>
                         <td>
-                            <%= item.name %>
+                            <%= order_detail.item.name %>
                         </td>
                         <td>
-                            <%= item.item.price_without_tax %>
+                            <%= order_detail.price %>
                         </td>
                         <td>
-                            <%= item.quantity %>
+                            <%= order_detail.quantity %>
                         </td>
                         <td>
-                            <%= item.item.price_without_tax * item.quantity %>
+                            <%= order_detail.price * order_detail.quantity %>
                         </td>
-                        
-                        <% end %>
+
+
                         <!--form_with で製作ステータスの更新させる-->
-                        
+
                         <td>
-                            <!--Order_details.Order.order_status-->
+                          <div>
+                            <%= form_with model: [:admin, order_detail], local:true do |f| %>
+                            <%= f.select :production_status, [['着手不可','0'],['製作待ち','1'],['製作中','2'],['製作完了','3']] %>
+                            <%= f.submit "更新", class:"btn btn-success" %>
+                            <% end %>
+                          </div>
+                            <%= order_detail.production_status %>
                         </td>
                         <td>
                             <!--order_path current_id-->
-                            
+
                         </td>
+
+                        <% end %>
                     </tbody>
                 </table>
             </div>
-           
+
            <div class="col-2">
                <table>
                    <tr>
@@ -93,9 +101,9 @@
                    </tr>
                </table>
            </div>
-           
-           
-            
+
+
+
         </div>
     </div>
 </main>
