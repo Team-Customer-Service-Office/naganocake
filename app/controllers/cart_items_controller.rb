@@ -1,21 +1,21 @@
 class CartItemsController < ApplicationController
   def index
-    @items =current_customer.cart_items
+    @items = current_customer.cart_items
     @total = 0
   end
 
   def create
-    @cart = current_customer.cart_item.find_by(params[:cart_item][:item_id])
+    @cart = current_customer.cart_items.find_by(params[:cart_item][:item_id])
     if @cart.nil?
       @cart_item = current_customer.cart_items.new(cart_item_params)
       @cart_item.save
-    else 
+    else
       @cart.quantity +=  params[:cart_item][:quantity].to_i
       @cart.save
     end
     redirect_to cart_items_path
   end
-  
+
 
 
   def update
@@ -38,15 +38,15 @@ class CartItemsController < ApplicationController
     @items.destroy_all
     redirect_to cart_items_path
   end
-  
-  
+
+
   private
-  
+
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :quantity)
   end
-    
-  
- 
-  
+
+
+
+
 end
