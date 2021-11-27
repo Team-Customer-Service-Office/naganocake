@@ -2,7 +2,7 @@ class Order < ApplicationRecord
     
     
     belongs_to :customer
-    has_many :order_detail
+    has_many :order_details
     
     validates :postcode, presence: true, length: {maximum: 7}
     validates :address, presence: true
@@ -17,5 +17,16 @@ class Order < ApplicationRecord
     def postcode_address
         '〒' + postcode + ' ' + address
     end
+    
+    
+    def calc_total
+        order_detail = order_details
+        total = 0
+        order_detail.each do |a|
+           total += a.price * a.quantity
+        end
+        return total
+    end
+    
     
 end
