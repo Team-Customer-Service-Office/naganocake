@@ -40,7 +40,7 @@
 　        　</tr>
 　        　<tr>
 　　          <th class="table-warning">会員ステータス</th>
-　　          <% if @customer.is_deleted == false %>
+　　          <% if @customer.is_deleted == "enable" %>
                 <td class="font-weight-bold text-success">有効</td>
               <% else %>
                 <td class="font-weight-bold text-secondary">退会</td>
